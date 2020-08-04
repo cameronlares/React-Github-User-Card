@@ -40,6 +40,8 @@ class App extends React.Component {
       })
 
       .catch((error) => console.log(error));
+
+      
   }
 
 
@@ -48,12 +50,14 @@ class App extends React.Component {
   render() {
     console.log("Hello");
     return (
+      
       <div className="App">
+             <h1> GitHub User Card</h1>
         <header className="App-header">
-          <h1> GitHub User Card</h1>
+     
 
           <div> {
-	this.state.followers.map(follower => <CardList follower={follower}  user={this.state.user.login}/>)
+	this.state.followers.map(follower => <CardList   follower={follower}  user={this.state.user.login}/>)
     }
           </div>
         </header>

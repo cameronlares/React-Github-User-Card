@@ -1,6 +1,4 @@
-.App {
-  text-align: center;
-}
+
 
 .App-logo {
   height: 40vmin;
@@ -13,26 +11,53 @@
   }
 }
 
-.App-header {
+.App {
   background-color: #282c34;
-  min-height: 100vh;
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.App-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.card{
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  border-radius: 5px;
+  box-shadow: 0 1px 6px -2px #000;
+  background-color: #FFF;
+  margin-bottom: 30px;
+
+}
+
+.card p {
+  font-size: 1.4rem;
+  margin-bottom: 3px;
+  color:black
+}
+
+.card .username {
+  font-size: 1.8rem;
+  font-style: italic;
+  margin: 3px 0 10px;
+
+  
+}
+
+.card img {
+  width: 150px;
+  height: 150px;
+  border-radius: 3px;
+  margin-right: 20px;
 }

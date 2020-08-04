@@ -3,17 +3,12 @@ import React from "react";
 const CardList = (props) => {
   return (
     <div className="card">
-        <p>
-      {props.follower.login}
-      </p>
-      <p>
+    
+     <img className="follower-img" width="200" src= {props.follower.avatar_url} alt="Follower"/>
 
-      {props.follower.id}
+        <p className="username">
+      Username: {props.follower.login}
       </p>
-
-    <p>
-       { props.user}
-    </p>
     </div>
   );
 };
