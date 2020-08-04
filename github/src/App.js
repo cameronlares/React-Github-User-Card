@@ -3,7 +3,7 @@ import logo from "./logo.svg";
 import CardList from "./CardList";
 import "./App.css";
 import axios from "axios";
-
+import Form from './Form'
 class App extends React.Component {
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
@@ -40,25 +40,28 @@ class App extends React.Component {
       })
 
       .catch((error) => console.log(error));
-
-      
   }
 
-
+  search = username => {
+    this.setState({
+      user: username
+    })
+  }
 
 
   render() {
     console.log("Hello");
     return (
-      
       <div className="App">
-             <h1> GitHub User Card</h1>
+        <h1> GitHub User Card</h1>
         <header className="App-header">
-     
+          <div>
+          {/* <Form search={this.search} /> */}
 
-          <div> {
-	this.state.followers.map(follower => <CardList   follower={follower}  user={this.state.user.login}/>)
-    }
+            {" "}
+            {this.state.followers.map((follower) => (
+              <CardList follower={follower} user={this.state.user.login} />
+            ))}
           </div>
         </header>
       </div>
