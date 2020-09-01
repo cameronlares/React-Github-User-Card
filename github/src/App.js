@@ -14,13 +14,16 @@ class App extends React.Component {
     this.state = {
       user: [],
       followers: [],
+      newUser:'cameronlares',
     };
   }
 
   componentDidMount() {
+    console.log(this.newUser)
+
     axios
-      .get("https://api.github.com/users/cameronlares")
-      .then((res) => {
+    .get(`https://api.github.com/users/${this.state.newUser}/followers`)
+    .then((res) => {
         console.log(res.data);
         this.setState({
           user: res.data,
@@ -32,7 +35,6 @@ class App extends React.Component {
     axios
       .get("https://api.github.com/users/cameronlares/followers")
       .then((res) => {
-        // res.data.message
         console.log(res.data);
         this.setState({
           followers: res.data,
@@ -40,27 +42,46 @@ class App extends React.Component {
       })
 
       .catch((error) => console.log(error));
+
+      
   }
 
   search = username => {
     this.setState({
-      user: username
+      newUser: username
     })
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.newUser !== this.state.newUser) {
+      console.log('UserCard state has changed.')
+     console.log(this.state.newUser)
+     
+    }
+
+  }
+
+
+
+
 
   render() {
-    console.log("Hello");
+
     return (
       <div className="App">
         <h1> GitHub User Card</h1>
         <header className="App-header">
           <div>
-          {/* <Form search={this.search} /> */}
+          <Form search={this.search} />
+
+    <p>Searched User:{this.state.newUser,console.log(this.state.newUser)}</p>
+
+
 
             {" "}
+            <h2>Followers</h2>
             {this.state.followers.map((follower) => (
-              <CardList follower={follower} user={this.state.user.login} />
+              <CardList follower={follower} key={follower.id} />
             ))}
           </div>
         </header>

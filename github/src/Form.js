@@ -4,22 +4,24 @@ class Form extends React.Component {
   constructor() {
     super();
     this.state = {
-      info: "",
+      user: [],
     };
   }
 
   handleChange = (e) => {
     this.setState({
-      info: e.target.value,
+      user: e.target.value,
     });
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.search(this.state.formText);
+    this.props.search(this.state.user);
+  
     this.setState({
-      info: "",
+      user: "",
     });
+
   };
 
   render() {
@@ -27,13 +29,18 @@ class Form extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <input
           type="text"
-          name="username"
+          name="user"
           placeholder="Search by username"
-          value={this.state.info}
+          value={this.state.user}
           onChange={this.handleChange}
         />
         <button>Search</button>
+       
       </form>
+     //Test
+    
+
+     //Test
     );
   }
 }
