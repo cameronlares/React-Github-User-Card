@@ -16,7 +16,7 @@ class Form extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.search(this.state.user);
+    this.props.search(this.props.user);
   
     this.setState({
       user: "",

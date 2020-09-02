@@ -4,6 +4,7 @@ import CardList from "./CardList";
 import "./App.css";
 import axios from "axios";
 import Form from './Form'
+import Search from './Search'
 class App extends React.Component {
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
@@ -22,11 +23,11 @@ class App extends React.Component {
     console.log(this.newUser)
 
     axios
-    .get(`https://api.github.com/users/${this.state.newUser}/followers`)
+    .get(`https://api.github.com/users/${this.state.newUser}`)
     .then((res) => {
         console.log(res.data);
         this.setState({
-          user: res.data,
+          newUser: res.data,
         });
       })
 
@@ -48,14 +49,18 @@ class App extends React.Component {
 
   search = username => {
     this.setState({
-      newUser: username
+      user: username
     })
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.newUser !== this.state.newUser) {
-      console.log('UserCard state has changed.')
+    if (prevState.newUser !== this.state.user) {
+      console.log('UserCard state has changed to .',`${this.state.user}`)
      console.log(this.state.newUser)
+
+     
+
+   
      
     }
 
@@ -72,11 +77,14 @@ class App extends React.Component {
         <h1> GitHub User Card</h1>
         <header className="App-header">
           <div>
-          <Form search={this.search} />
+          <Form search={this.search} user={this.state.newUser} />
 
-    <p>Searched User:{this.state.newUser,console.log(this.state.newUser)}</p>
+    <p>Searched User:{this.state.user,console.log(this.state.user)}</p>
 
+{/* {this.state.user.map((follower) => (
+  <Search  follower={follower} key={follower.id}/>
 
+))} */}
 
             {" "}
             <h2>Followers</h2>
