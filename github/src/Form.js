@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 class Form extends React.Component {
   constructor() {
@@ -17,15 +18,22 @@ class Form extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.search(this.props.user);
+
+    axios
+    .get(`https://api.github.com/users/${this.state.user}`)
+    .then((res) => {
+        console.log(res.data);
+        this.setState({
+          user: res.data,
+        });
+      })
   
-    this.setState({
-      user: "",
-    });
 
   };
 
   render() {
     return (
+      <div>
       <form onSubmit={this.handleSubmit}>
         <input
           type="text"
@@ -37,6 +45,9 @@ class Form extends React.Component {
         <button>Search</button>
        
       </form>
+
+      <p> {this.state.user.name} </p>
+      </div>
      //Test
     
 
