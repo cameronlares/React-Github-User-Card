@@ -4,6 +4,7 @@ import CardList from "./CardList";
 import "./App.css";
 import axios from "axios";
 import Form from './Form'
+import Search from './Search'
 class App extends React.Component {
   // you will need a place to store your state in this component.
   // design `App` to be the parent component of your application.
@@ -14,16 +15,19 @@ class App extends React.Component {
     this.state = {
       user: [],
       followers: [],
+      newUser:'cameronlares',
     };
   }
 
   componentDidMount() {
+    console.log(this.newUser)
+
     axios
-      .get("https://api.github.com/users/cameronlares")
-      .then((res) => {
+    .get(`https://api.github.com/users/${this.state.newUser}`)
+    .then((res) => {
         console.log(res.data);
         this.setState({
-          user: res.data,
+          newUser: res.data,
         });
       })
 
@@ -32,7 +36,6 @@ class App extends React.Component {
     axios
       .get("https://api.github.com/users/cameronlares/followers")
       .then((res) => {
-        // res.data.message
         console.log(res.data);
         this.setState({
           followers: res.data,
@@ -40,6 +43,8 @@ class App extends React.Component {
       })
 
       .catch((error) => console.log(error));
+
+      
   }
 
   search = username => {
@@ -48,19 +53,43 @@ class App extends React.Component {
     })
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.newUser !== this.state.user) {
+      console.log('UserCard state has changed to .',`${this.state.user}`)
+     console.log(this.state.newUser)
+
+     
+
+   
+     
+    }
+
+  }
+
+
+
+
 
   render() {
-    console.log("Hello");
+
     return (
       <div className="App">
         <h1> GitHub User Card</h1>
         <header className="App-header">
           <div>
-          {/* <Form search={this.search} /> */}
+          <Form search={this.search} user={this.state.newUser} />
+
+    <p>Searched User:{this.state.user,console.log(this.state.user)}</p>
+
+{/* {this.state.user.map((follower) => (
+  <Search  follower={follower} key={follower.id}/>
+
+))} */}
 
             {" "}
+            <h2>Followers</h2>
             {this.state.followers.map((follower) => (
-              <CardList follower={follower} user={this.state.user.login} />
+              <CardList follower={follower} key={follower.id} />
             ))}
           </div>
         </header>

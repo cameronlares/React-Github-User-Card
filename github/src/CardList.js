@@ -2,7 +2,9 @@ import React from "react";
 
 const CardList = (props) => {
   return (
+
     <div className="card">
+   
       <img
         className="follower-img"
         width="200"
@@ -11,6 +13,7 @@ const CardList = (props) => {
       />
 
       <p className="username">Username: {props.follower.login}</p>
+
     </div>
   );
 };
